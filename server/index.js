@@ -11,7 +11,13 @@ import cors from "cors";
 
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.use(cors({
+  origin: "https://primeflix-sage.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use('/api/v1', routes);
