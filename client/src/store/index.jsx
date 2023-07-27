@@ -24,7 +24,8 @@ const store = configureStore({
         favorites: favoriteSlice,
         user: userSlice,
         adminNew: AdminSlice
-    }
+    },
+    devTools: false
 });
 
 export default store;
