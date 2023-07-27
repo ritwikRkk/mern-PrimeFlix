@@ -1,0 +1,326 @@
+:root {
+  --lGradHero: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0.35) 100%,
+      transparent 35%
+    ),
+    linear-gradient(to left, rgba(0, 0, 0, 0.4) 20%, transparent 40%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 20%, transparent 30%),
+    linear-gradient(to top, rgba(0, 0, 0, 0.8) 10%, transparent 20%);
+  /* --lGradHero: linear-gradient(to right, rgba(255,255,255,0.4) 100%, transparent 30%), linear-gradient(to left, rgba(255,255,255,0.4) 5%, transparent 15%), linear-gradient(to bottom, rgba(255,255,255,0.5) 20%, transparent 30%), linear-gradient(to top, rgba(255,255,255,0.8) 10%, transparent 30%); */
+}
+.mediaDetailsHero {
+  position: relative;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  border-bottom: 1px solid var(--text-color);
+}
+.mediaDetailsHero .mdh-img-container {
+  /* padding: 80px 100px; */
+  width: 100%;
+  height: 100%;
+  height: 100vh;
+  position: absolute;
+  /* z-index: -1; */
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.mdh_container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+.mdh_container::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  z-index: -1;
+}
+.mdh-poster_container {
+  height: 100%;
+  height: 100vh;
+  width: 30%;
+  padding: 90px 15px 10px;
+}
+.mdh-poster_img {
+  height: 95%;
+  border-radius: 20px;
+  border: 2px solid #ccc;
+  box-shadow: 2px 2px 10px 2px;
+}
+
+.mediaDetailsHero_container {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: 100%;
+  gap: 20px;
+  text-align: left;
+  padding: 120px 20px 80px;
+  justify-content: center;
+}
+
+.mdh-media_name {
+  font-size: 3rem;
+  color: white;
+  color: var(--text-color);
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.mdh-media_info {
+  display: flex;
+  gap: 20px;
+  color: var(--text-color);
+}
+
+.mdh-media_rating {
+  background-color: springgreen;
+  padding: 5px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+  gap: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.mdh-media_release_year {
+  background-color: red;
+  padding: 5px;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.mdh-media_genres {
+  display: flex;
+  gap: 10px;
+}
+
+.mdh-media_genres .media_genre_name {
+  background-color: red;
+  color: white;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  padding: 2px 10px;
+  border: 2px solid white;
+  border-radius: 20px;
+  gap: 10px;
+}
+
+.mdh-media_description {
+  font-size: 1.2rem;
+  position: relative;
+  /* height: unset; */
+  /* height: 100%; */
+  display: flex;
+  align-items: center;
+  /* justify-content: center; */
+}
+.mdh-media_description::before {
+  content: "";
+  position: absolute;
+  background: white;
+  background-color: var(--bg-color);
+  /* top: 0; */
+  /* left: 0; */
+  width: 100%;
+  max-width: 1000px;
+  height: 100%;
+  z-index: -1;
+  border: 1px solid var(--text-color);
+  border-radius: 5px;
+  opacity: 0.5;
+}
+
+.mdh-media_description div {
+  padding: 5px;
+}
+.mdh-media_description div span {
+  color: var(--text-color);
+}
+
+.mdh-media_utils {
+  display: flex;
+  gap: 20px;
+}
+.mdh-media_utils .links {
+  display: flex;
+  gap: 5px;
+  text-decoration: none;
+}
+.links.watch_now {
+  text-decoration: none;
+  color: white;
+  color: var(--text-color);
+}
+.links.watch_now span.material-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mdh-watch_now_container {
+  background-color: red;
+  padding: 5px;
+  border: 2px solid var(--text-color);
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.mdh-favorite_container {
+  padding: 5px;
+  border: 2px solid var(--text-color);
+  border-radius: 5px;
+  /* font-size: 1.5rem; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.mdh-favorite_container::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  background-color: var(--bg-color);
+  opacity: 0.4;
+  z-index: -1;
+}
+
+.mdh-favorite_container .favorite {
+  color: #ff220c;
+}
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1140px) {
+  .mediaDetailsHero_container {
+    width: 60%;
+  }
+  .mdh-poster_container {
+    width: 35%;
+  }
+  .mdh-media_name {
+    font-size: 2rem;
+  }
+  .mdh-media_rating,
+  .mdh-media_release_year {
+    font-size: 1.2rem;
+  }
+  .mdh-media_genres .media_genre_name {
+    font-size: 1rem;
+  }
+  .mdh-media_description {
+    font-size: 0.9rem;
+  }
+  .mdh-watch_now_container {
+    font-size: 1.2rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  .mediaDetailsHero_container {
+    padding: 120px 10px 65px;
+  }
+  .mdh-poster_container {
+    width: 40%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .mdh-media_name {
+    font-size: 2rem;
+  }
+  .mdh-media_rating,
+  .mdh-media_release_year {
+    font-size: 1rem;
+  }
+  .mdh-media_genres .media_genre_name {
+    font-size: 0.8rem;
+  }
+  .mdh-media_description {
+    font-size: 0.75rem;
+    /* height: 45px; */
+  }
+  .material-icons {
+    font-size: 1rem;
+  }
+  .mdh-watch_now_container {
+    font-size: 1rem;
+  }
+  .small {
+    font-size: 1.5rem;
+  }
+}
+
+/* CONTENT INSIDE 100VH */
+@media screen and (max-width: 768px) {
+  .mdh_container {
+    flex-direction: column;
+  }
+  .mdh-poster_container {
+    width: 100%;
+    padding: 80px 15px 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mdh-poster_img {
+    width: 40%;
+    height: 90%;
+    min-width: 250px;
+  }
+  .mediaDetailsHero_container {
+    width: 100%;
+    padding: 20px;
+    gap: 10px;
+    height: unset;
+    background-color: var(--bg-color);
+  }
+  .mdh-media_description::before {
+    background-color: var(--text-color);
+    z-index: unset;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .mediaDetailsHero_container {
+    width: 100%;
+  }
+  .mdh-media_name {
+    font-size: 1.5rem;
+  }
+  .mdh-media_rating,
+  .mdh-media_release_year {
+    font-size: 1rem;
+  }
+  /* .mdh-media_genres .media_genre_name {
+    font-size: 0.7rem;
+  } */
+  .mdh-media_description {
+    font-size: 0.65rem;
+  }
+  .mdh-media_name .small {
+    font-size: 1.1rem;
+  }
+  .mdh-poster_img {
+    width: 70%;
+    height: 75%;
+    min-width: 220px;
+  }
+}

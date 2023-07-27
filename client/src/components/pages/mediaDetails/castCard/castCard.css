@@ -1,0 +1,79 @@
+.cast_card_container{
+    /* min-width: 250px;
+    background-color: red;
+    color: white; */
+    cursor: pointer;
+    border: 1px solid var(--bg-color);
+}
+
+.cast_card_container:hover{
+    transform: scale(0.95);
+}
+.cast_card_container .link{
+    /* width: 300px; */
+    display: inline-block;
+    /* width: 200px; */
+    /* height: 220px; */
+
+    /* background-color: red; */
+    color: white;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+.cast_card_container .link .cast_card{
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+img{
+    width: 100%;
+}
+.cast_card .cast_img{
+    width: 100%;
+    height: 100%;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+.cast_card .cast_name{
+    width: 100%;
+    /* height: 40px; */
+    padding: 5px;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    /* background-color: var(--bg-color); */
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cast_card .cast_name::before{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    content: "";
+    z-index: -1;
+    z-index: -1;
+    background-color: var(--bg-color);
+    opacity: 0.5;
+}
+@media screen and (max-width: 768px) {
+    .cast_card .cast_name{
+        font-size: 0.8rem;
+    }
+}
+/* @media screen and (max-width: 660px){
+    .cast_card_container .link{
+        width: 140px;
+        height: 160px;
+    }
+}
+@media screen and (max-width: 480px){
+    .cast_card_container .link{
+        width: 130px;
+        height: 150px;
+    }
+} */

@@ -1,0 +1,123 @@
+.userDetails_container {
+  /* height: 100vh; */
+  min-height: 100vh;
+  padding-top: 80px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.userDetails_container:before {
+  content: "";
+  /* background: url("../../../public/images/contact.jpg") center center/cover no-repeat; */
+  background: url("../../../../../public/images/contact.jpg") center center/cover no-repeat;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  opacity: 0.6;
+}
+.userDetails {
+  height: 100%;
+  width: 100%;
+  padding: 20px 60px;
+  /* max-width: 1000px; */
+  /* border: 2px solid black; */
+  display: flex;
+  justify-content: center;
+}
+.userDetails_content {
+  /* max-width: 1000px; */
+  max-width: 450px;
+  width: 50%;
+  padding: 20px;
+  border: 2px solid black;
+  border-radius: 5px;
+  background-color: #ccc;
+  box-shadow: 2px 2px 8px 5px #888888;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 1.1rem;
+}
+
+.userDetails_content .user_data {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.userDetails_content .container {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.userDetails_content p {
+    height: 35px;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    font-weight: normal;
+    color: slategrey;
+    user-select: none;
+}
+
+.userDetails_utils {
+  height: 45px;
+  padding: 5px 0;
+  display: flex;
+  gap: 20px;
+}
+.userDetails_utils_link {
+  text-decoration: none;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.userDetails_utils_link:hover {
+  opacity: 0.8;
+  transform: scale(1.05);
+}
+.userDetails_utils_link.changepass {
+  background-color: green;
+}
+.userDetails_utils_link.logout {
+  background-color: darkred;
+  border: none;
+}
+
+
+@media screen and (max-width: 1140px) {
+  .userDetails_content {
+    width: 70%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .userDetails {
+    padding: 20px;
+  }
+  .userDetails_content {
+    /* padding: 5px; */
+    font-size: 1rem;
+    width: 70%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .userDetails {
+    padding: 10px;
+  }
+  .userDetails_content {
+    font-size: 0.85rem;
+    gap: 5px;
+    width: 85%;
+  }
+}

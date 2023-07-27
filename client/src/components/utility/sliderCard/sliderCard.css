@@ -1,0 +1,206 @@
+.slider_card_container{
+    height: 100%;
+    /* width: 100%; */
+    display: flex;
+    /* gap: 20px; */
+    justify-content: center;
+    align-items: center;
+    /* padding-right: 0 10px; */
+    /* border-radius: 20px; */
+}
+.slider_card_container:hover{
+    transform: scale(0.95);
+    transition: all 0.5 ease-in;
+}
+.slider_card_container {
+  position: relative;
+}
+.slider_img_container {
+  position: relative;
+}
+.slider_img_container::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  background-color: var(--bg-color);
+  /* z-index: -1; */
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+}
+.slider_img_container img {
+  border-radius: 20px;
+  border: 1px solid var(--bg-color);
+}
+.slider_card_details {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+}
+.slider_card_details:hover {
+  opacity: 1;
+}
+.slider_card_details .favorite {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.slider_card-media_link span {
+  width: 70px;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.slider_card-media_link span:hover {
+  opacity: 1;
+}
+
+.slider_card-media_info {
+  /* position: relative;
+    z-index: 2; */
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 5px 0 0px 5px;
+  padding: 5px 0 5px 10px;
+}
+.slider_card-media_info::before {
+  content: "";
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* z-index: -1; */
+  background: black;
+  background-color: var(--bg-color);
+  opacity: 0.5;
+  border-radius: 10px;
+}
+.slider_card-media_utils {
+  display: flex;
+  gap: 10px;
+}
+.slider_card-media_utils .utils {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  /* background-color: grey; */
+  border: 2px solid var(--text-color);
+  border-radius: 5px;
+  padding: 3px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  color: var(--text-color);
+  position: relative;
+}
+.slider_card-media_utils .utils .material-icons {
+  font-size: 1rem;
+}
+.slider_card-media_utils .utils::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  z-index: -1;
+  background-color: grey;
+  opacity: 0.4;
+}
+.slider_card-media_name {
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
+  position: relative;
+}
+.slider_card-media_name span {
+  color: white;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.slider_card_details .name {
+  position: absolute;
+  bottom: 0;
+}
+
+.slider_favorite_container {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  /* background-color: #fff; */
+  border-radius: 5px;
+}
+.slider_favorite_container .links.favorite {
+  text-decoration: none;
+  color: white;
+}
+.slider_favorite_container .links.favorite div span{
+  height: 20px !important;
+  width: 20px !important;
+}
+.slider_favorite_container .links.favorite .fav_highlight{
+  /* text-decoration: none; */
+  color: red;
+}
+
+@media screen and (max-width: 1000px) {
+  /*  and (min-width: 640px) */
+  /* .slider_card {
+        height: 100%;
+        min-width: 180px;
+    } */
+  .slider_card-media_utils .utils {
+    font-size: 0.8rem;
+  }
+  .slider_card-media_name {
+    height: 2rem;
+  }
+  .slider_card-media_name span {
+    font-size: 0.9rem;
+  }
+  .slider_card-media_link span {
+    width: 50px;
+  }
+  .links.watch_now .material-icons {
+    font-size: 1rem;
+  }
+}
+@media screen and (max-width: 480px) {
+  /*  and (min-width: 640px) */
+  /* .slider_card {
+        min-width: 145px;
+    } */
+  .slider_card-media_utils .utils {
+    font-size: 0.7rem;
+  }
+  .slider_card-media_name span {
+    font-size: 0.8rem;
+  }
+  .slider_card-media_info {
+    padding: 5px 0px 5px 5px;
+  }
+}

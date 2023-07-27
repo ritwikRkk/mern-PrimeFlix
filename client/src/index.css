@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    position: relative;
+    padding-bottom: 140px;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+}
+
+.css-1snnooa-MuiLinearProgress-root {
+    background-color: red !important;
+}
+
+@media screen and (max-width:768px) {
+    body {
+        padding-bottom: 240px;
+    }
+}
+
+@media screen and (max-width:480px) {
+    body {
+        padding-bottom: 220px;
+    }
+}

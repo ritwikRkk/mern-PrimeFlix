@@ -1,0 +1,117 @@
+.content_container {
+  width: 100%;
+  /* height: calc(100vh - 80px); */
+  /* background-color: grey; */
+  background-color: black;
+  background-color: var(--bg-color);
+  /* background-color: rgb(25, 25, 25); */
+}
+.content {
+  /* height: 100%; */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.content_header {
+  width: 100%;
+  height: 60px;
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  color: var(--text-color);
+  padding-left: 10px;
+  display: flex;
+  align-items: flex-end;
+  max-width: 1330px;
+}
+
+.slider_container_content {
+  width: 100%;
+  /* height: 100%; */
+  /* height: calc(100% - 80px); */
+  /* background-color: white; */
+  background-color: black;
+  background-color: var(--bg-color);
+  padding: 20px;
+  /* Added */
+  display: flex;
+  /* gap: 20px; */
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+  max-width: 1330px;
+  /* max-width: 1070px; */
+  border-bottom: 1px solid var(--text-color);
+}
+
+.slider_container_content .arrow {
+  position: absolute;
+  height: 25px;
+  width: 25px;
+  background-color: #ccc;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 50%;
+  /* padding: 5px; */
+  /* display: inline-block; */
+  display: flex;
+  justify-content: center;
+  z-index: 1;
+  cursor: pointer;
+}
+.slider_container_content .left-arr_content {
+  left: 5px;
+}
+.slider_container_content .right-arr_content {
+  right: 5px;
+}
+.slider_wrapper_content {
+  /* width: 97%; */
+  width: 1290px;
+  width: 100%;
+  /* width: 1030px; */
+  height: 100%;
+  display: flex;
+  /* gap: 10px; */
+  overflow: hidden;
+  display: grid;
+  /* grid-gap: 10px; */
+  grid-auto-flow: column;
+  grid-auto-columns: 20%;
+}
+
+.content_count_container {
+  position: absolute;
+  bottom: 5px;
+  display: flex;
+  gap: 5px;
+}
+
+.content_count_circle {
+  display: inline-block;
+  height: 5px;
+  background-color: var(--text-color);
+  width: 5px;
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+@media screen and (max-width: 1000px) {
+  .slider_wrapper_content {
+    grid-auto-columns: 25%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .slider_wrapper_content {
+    grid-auto-columns: calc(100% / 3);
+  }
+}
+@media screen and (max-width: 480px) {
+  .slider_wrapper_content {
+    grid-auto-columns: 50%;
+  }
+}
