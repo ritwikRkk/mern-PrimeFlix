@@ -13,7 +13,7 @@ const SignUp = () => {
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         if(authToken){
             navigate("/user");
         }
@@ -86,7 +86,7 @@ const SignUp = () => {
             }, 2000);
         }else{
             setTimeout(() => {
-                console.log(creatUser.success, creatUser.errors)
+                // console.log(creatUser.success, creatUser.errors)
                 setIsLoading(false);
             }, 2000);
         }

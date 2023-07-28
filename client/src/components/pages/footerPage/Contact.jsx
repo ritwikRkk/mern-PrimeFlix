@@ -6,7 +6,7 @@ import formValidator from '../../utility/form/FormValidator';
 const Contact = () => {
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
     }, []);
 
     const [credentials, setCredentials] = useState({ name: "", phone: "", email: "", message: "" });
@@ -39,8 +39,8 @@ const Contact = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(credentials);
-        console.log(formValidator.name(credentials.name));
+        // console.log(credentials);
+        // console.log(formValidator.name(credentials.name));
     };
 
     return (

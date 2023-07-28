@@ -102,7 +102,7 @@ const SliderFunctions = {
 
     inc: (page) => {
 
-        console.log("inc");
+        // console.log("inc");
     }
 
 }

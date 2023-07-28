@@ -102,7 +102,7 @@ const SliderCard = (props) => {
         }, 2000);
       }
     }else{
-      console.log("Please Login or Sign Up first to add favorites");
+      // console.log("Please Login or Sign Up first to add favorites");
     }
   }
 

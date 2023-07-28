@@ -55,7 +55,7 @@ const SerachType = () => {
       setTimeout(() => setMovieData(movieData.concat(response.data.results)), 2000);
       // setMovieData(movieData.concat(response.data.results));
     } else if (btnActive === "movie" && page >= totalPages) {
-      console.log(false);
+      // console.log(false);
       return false;
     }
 
@@ -66,7 +66,7 @@ const SerachType = () => {
       setTimeout(() => setTvData(tvData.concat(response.data.results)), 2000);
       // setTvData(tvData.concat(response.data.results));
     } else if(btnActive === "tv" && page >= totalPages) {
-      console.log(false);
+      // console.log(false);
       return false;
     }
 
@@ -78,7 +78,7 @@ const SerachType = () => {
       setTimeout(() => setCastData(castData.concat(response.data.results)), 2000);
       // setCastData(castData.concat(response.data.results));
     } else if(btnActive === "cast" && page >= totalPages) {
-      console.log(false);
+      // console.log(false);
       return false;
     }
   }

@@ -14,7 +14,7 @@ const Login = () => {
     let authToken = localStorage.getItem('auth-token');
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         if (authToken) {
             navigate("/user");
         }
@@ -80,7 +80,7 @@ const Login = () => {
             }, 2000);
         } else {
             setTimeout(() => {
-                console.log(getUser.success, getUser.error)
+                // console.log(getUser.success, getUser.error)
                 setIsLoading(false);
             }, 2000);
         }

@@ -1,47 +1,35 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import "./nav.css";
 // import "../styles/nav.css";
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
+import { toggleMobileMenu, handleScroll, handleThemeMode } from '../utility/navFunction/NavFunction';
 
 const Nav = () => {
     const favoritesLen = useSelector(state => state.favorites.favoritesArr.length);
     // console.log(favoritesLen);
     const [themeMode, setThemeMode] = useState("dark");
+    let menuRef = useRef();
 
-    const toogleMobileMenu = () => {
-        const navToggle = document.querySelector('.navbar__toggle');
-        const navMenu = document.querySelector('.navbar__menu');
-
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    }
-    const [scrollHeight, setScrollHeight] = useState(0);
+    let [scrollHeight, setScrollHeight] = useState(0);
     let location = useLocation();
 
-    const handleScroll = () => {
-        setScrollHeight(window.scrollY);
+    window.addEventListener('scroll', () => {
+        handleScroll(scrollHeight, setScrollHeight, location)
+    });
 
-        // hiding and unhiding the scroller
-        let scroller_container = document.querySelector(".scroller_container");
-
-        //  SET THE --navbar-opacity TO 1 FOR CATEGORIES PAGE ONLY
-        if ((scrollHeight >= 80) || (location.pathname.split("/")[1] === "categories")) {
-            document.documentElement.style.setProperty('--navbar-opacity', 1)
-            scroller_container.style.display = "flex";
-        } else {
-            document.documentElement.style.setProperty('--navbar-opacity', 0.5)
-            scroller_container.style.display = "none";
-        }
-    }
-    window.addEventListener('scroll', handleScroll);
     useEffect(() => {
-        // console.log(location.pathname.split("/")[1]);
         // To hide the scroller when page changes
         setScrollHeight(window.scrollY);
-        handleScroll();
+        handleScroll(scrollHeight, setScrollHeight, location)
         // eslint-disable-next-line
     }, [location, scrollHeight])
+
+    useEffect(() => {
+        // whenever location changes scroll to top of the page
+        window.scrollTo(0, 0);
+        // eslint-disable-next-line
+    }, [location])
 
     // CHANGING USER ROUTE FOR NON-LOGGED IN USERS
     let userRoute = "";
@@ -51,40 +39,20 @@ const Nav = () => {
         userRoute = "/login";
     }
 
-    const handleThemeMode = (mode)=>{
-        const linear_gradient ={
-            dark: "linear-gradient(90deg, rgba(0,0,0,1) 20%, rgba(255,252,252,0) 66%, rgba(255,255,255,0) 100%)",
-            light: "linear-gradient(90deg, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 66%, rgba(255,255,255,0) 100%)",
-            dark_mobile: "linear-gradient(90deg, rgba(0,0,0,0.9) 20%, rgba(0,0,0,0.2) 66%, rgba(0,0,0,0.2) 100%)",
-            light_mobile: "linear-gradient(90deg, rgba(255,255,255,1) 20%, rgba(255,255,255,0) 66%, rgba(255,255,255,0) 100%)",
-            // LINEAR GRADIENT FOR MEDIADETAILS PAGE
-            dark_lGradHero: "linear-gradient(to right, rgba(0,0,0,0.35) 100%, transparent 35%), linear-gradient(to left, rgba(0,0,0,0.4) 20%, transparent 40%), linear-gradient(to bottom, rgba(0,0,0,0.5) 20%, transparent 30%), linear-gradient(to top, rgba(0,0,0,0.8) 10%, transparent 20%)",
-            light_lGradHero: "linear-gradient(to right, rgba(255,255,255,0.4) 100%, transparent 30%), linear-gradient(to left, rgba(255,255,255,0.4) 5%, transparent 15%), linear-gradient(to bottom, rgba(255,255,255,0.3) 20%, transparent 30%), linear-gradient(to top, rgba(255,255,255,0.5) 5%, transparent 20%)",
+    useEffect(() => {
+        // close mobile menu when clicked outside of it
+        let closeMobileMenu = (event) => {
+            if (!menuRef.current.contains(event.target) && event.target.id !== "bar") {
+                const navToggle = document.querySelector('.navbar__toggle');
+                const navMenu = document.querySelector('.navbar__menu');
+
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
         }
-        console.log(mode);
-        switch (mode) {
-            case "light":
-                document.documentElement.style.setProperty("--bg-color", "white");
-                document.documentElement.style.setProperty("--text-color", "black");
-                document.documentElement.style.setProperty("--linear-gradient", linear_gradient.light);
-                document.documentElement.style.setProperty("--linear-gradient-opacity", "0.3");
-                document.documentElement.style.setProperty("--linear-gradient-mobile", linear_gradient.light_mobile);
-                document.documentElement.style.setProperty("--lGradHero", linear_gradient.light_lGradHero);
-                setThemeMode("light");
-                break;
-            case "dark":
-                document.documentElement.style.setProperty("--bg-color", "black");
-                document.documentElement.style.setProperty("--text-color", "white");
-                document.documentElement.style.setProperty("--linear-gradient", linear_gradient.dark);
-                document.documentElement.style.setProperty("--linear-gradient-opacity", "0.3");
-                document.documentElement.style.setProperty("--linear-gradient-mobile", linear_gradient.dark_mobile);
-                document.documentElement.style.setProperty("--lGradHero", linear_gradient.dark_lGradHero);
-                setThemeMode("dark");
-                break;
-            default:
-                setThemeMode("dark");
-        }
-    }
+        document.addEventListener("click", closeMobileMenu);
+    }, [])
+
 
     return (
         <div className="navbar__stick">
@@ -93,41 +61,41 @@ const Nav = () => {
                 <div className="navbar__container">
                     <div className="main-menu">
                         <Link to="/" id="navbar__logo">PrimeFlix</Link>
-                        <div className="navbar__menu">
+                        <div className="navbar__menu" id="mobile-menu" ref={menuRef}>
                             <ul className="menu-list">
                                 <li className="navbar__item">
-                                    <Link to="/" className={`navbar__links ${location.pathname === "/" ? "active" : ""}`} id="home-page">Home</Link>
+                                    <Link to="/" onClick={toggleMobileMenu} className={`navbar__links ${location.pathname === "/" ? "active" : ""}`} id="home-page">Home</Link>
                                 </li>
                                 <li className="navbar__item">
-                                    <Link to="/movie" className={`navbar__links ${location.pathname === "/movie" ? "active" : ""}`} id="about-page">Movie</Link>
+                                    <Link to="/movie" onClick={toggleMobileMenu} className={`navbar__links ${location.pathname === "/movie" ? "active" : ""}`} id="about-page">Movie</Link>
                                 </li>
                                 <li className="navbar__item">
-                                    <Link to="/tv" className={`navbar__links ${location.pathname === "/tv" ? "active" : ""}`} id="services-page">Tv Series</Link>
+                                    <Link to="/tv" onClick={toggleMobileMenu} className={`navbar__links ${location.pathname === "/tv" ? "active" : ""}`} id="services-page">Tv Series</Link>
                                 </li>
                                 <li className="navbar__item">
-                                    <Link to="/categories/movies" className={`navbar__links button ${location.pathname === "/categories" ? "active" : location.pathname === "/categories/movies" ? "active" : location.pathname === "/categories/tv" ? "active" : ""}`} id="sign-up">Categories</Link>
+                                    <Link to="/categories/movies" onClick={toggleMobileMenu} className={`navbar__links button ${location.pathname === "/categories" ? "active" : location.pathname === "/categories/movies" ? "active" : location.pathname === "/categories/tv" ? "active" : ""}`} id="sign-up">Categories</Link>
                                 </li>
                                 <li className="navbar__item">
-                                    <Link to="/search" className={`navbar__links ${location.pathname === "/search" ? "active" : ""}`} id="search"> &#128269; </Link>
+                                    <Link to="/search" onClick={toggleMobileMenu} className={`navbar__links ${location.pathname === "/search" ? "active" : ""}`} id="search"> &#128269; </Link>
                                 </li>
                             </ul>
                             <div className="utils-container">
-                                <div className={`mode_icons ${themeMode==="light" ? "hide" : ""}`}><span className="material-icons hover" onClick={ ()=> handleThemeMode("light")}>light_mode</span></div>
-                                <div className={`mode_icons ${themeMode==="dark" ? "hide" : ""}`} ><span className="material-icons hover" onClick={ ()=> handleThemeMode("dark")}>dark_mode</span></div>
-                                <div> <Link to={`/user${userRoute}`} className="utils-link"><span className="material-icons hover">account_circle</span></Link> </div>
+                                <div className={`mode_icons ${themeMode === "light" ? "hide" : ""}`} onClick={toggleMobileMenu}><span className="material-icons hover" onClick={() => handleThemeMode("light", setThemeMode)}>light_mode</span></div>
+                                <div className={`mode_icons ${themeMode === "dark" ? "hide" : ""}`} onClick={toggleMobileMenu} ><span className="material-icons hover" onClick={() => handleThemeMode("dark", setThemeMode)}>dark_mode</span></div>
+                                <div> <Link to={`/user${userRoute}`} className="utils-link" onClick={toggleMobileMenu}><span className="material-icons hover">account_circle</span></Link> </div>
 
                                 <div className="favorite-container">
                                     {/* <Link to="/favorites" className="utils-link"> <span className="material-icons hover">favorite</span> </Link> */}
-                                    <Link to="/favorites/movie" className="utils-link"> <span className="material-icons hover">favorite</span> </Link>
+                                    <Link onClick={toggleMobileMenu} to="/favorites/movie" className="utils-link"> <span className="material-icons hover">favorite</span> </Link>
                                     <sup className="favorite-number"> {favoritesLen} </sup>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="navbar__toggle" id="mobile-menu" onClick={toogleMobileMenu}>
-                        <span className="bar"></span>
-                        <span className="bar"></span>
-                        <span className="bar"></span>
+                    <div className="navbar__toggle" id="bar" onClick={toggleMobileMenu}>
+                        <span className="bar" id="bar"></span>
+                        <span className="bar" id="bar"></span>
+                        <span className="bar" id="bar"></span>
                     </div>
                 </div>
             </nav>

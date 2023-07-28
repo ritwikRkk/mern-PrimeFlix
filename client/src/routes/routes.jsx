@@ -104,9 +104,10 @@ const routes = [
         element: <Home />
     },
     {
-        path: "/",
+        path: "*",
         element: <Home />
     },
+    
 ]
 
 const elements = {

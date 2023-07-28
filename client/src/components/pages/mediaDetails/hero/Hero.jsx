@@ -36,7 +36,7 @@ const Hero = (props) => {
                     <div className="mdh-media_utils">
                         {/* <div className="mdh-watch_now_container"> <Link className="links watch_now" to={`/${props.page}`}> <span className="material-icons">play_circle</span> <span> Watch Now </span> </Link> </div> */}
                         {videosLen>0 && <div className="mdh-watch_now_container"> <Link className="links watch_now" onClick={props.click} > <span className="material-icons">play_circle</span> <span> Watch Now </span> </Link> </div>}
-                        <div className="mdh-favorite_container"> <Link className="links favorite" to="/fav"> <span className="material-icons">favorite</span> </Link> </div>
+                        {/* <div className="mdh-favorite_container"> <Link className="links favorite" to="/fav"> <span className="material-icons">favorite</span> </Link> </div> */}
                     </div>
                 </div>
 

@@ -23,16 +23,16 @@ const UserDetails = () => {
     const fetchUser = async (token) => {
         let getUser = await userApi.userInfo(token);
         if (getUser.success) {
-            console.log(getUser);
+            // console.log(getUser);
             dispatch(userDetails({ _id: getUser.user._id, userName: getUser.user.username, email: getUser.user.email }));
             // setCredentials({ userName: user.username, email: user.email })
         } else {
-            console.log(getUser.success, getUser.error)
+            // console.log(getUser.success, getUser.error)
         }
     }
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         // console.log(authToken);
         if (!authToken) {
             // console.log(window.history)

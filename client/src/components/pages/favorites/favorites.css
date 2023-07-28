@@ -12,7 +12,7 @@
     content: "";
     height: 100%;
     width: 100%;
-    background-color: black;
+    /* background-color: black; */
     opacity: 0.8;
     z-index: -1;
 }
@@ -23,13 +23,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: var(--bg-color);
     /* position: fixed; */
     position: sticky;
     z-index: 3;
     top: 80px;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
+    border-top: 1px solid var(--text-color);
+    border-bottom: 1px solid var(--text-color);
 }
 .favorites_content{
     width: 200px;
@@ -38,7 +38,7 @@
 }
 .favorites_content .cat_link{
     text-decoration: none;
-    color: white;
+    color: var(--text-color);
     font-weight: bold;
     font-size: 1.3rem;
     padding: 5px 15px;

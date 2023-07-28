@@ -100,8 +100,8 @@ const MediaCard = (props) => {
           }
         }, 2000);
       }
-    }else{
-      console.log("Please Login or Sign Up first to add favorites");
+    } else {
+      // console.log("Please Login or Sign Up first to add favorites");
     }
 
   }

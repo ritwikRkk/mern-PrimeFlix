@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import Test from "./components/test";
+// import Test from "./components/test";
 
 import {
   BrowserRouter as Router,
@@ -8,7 +8,7 @@ import {
   // useLocation
 } from "react-router-dom";
 
-import { results } from "./components/Data";
+// import { results } from "./components/Data";
 
 import { routes, elements } from "./routes/routes";
 import { useDispatch } from 'react-redux';
@@ -74,7 +74,7 @@ const App = () => {
               </Route>
           ))}
 
-          <Route exact path="*" element={<Test page="movie" content="1" data={results} />} />
+          {/* <Route exact path="*" element={<Test page="movie" content="1" data={results} />} /> */}
 
         </Routes>
 

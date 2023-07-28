@@ -63,10 +63,10 @@ const Test = (props) => {
     // let uniqueArray = Array.from(uniqueSet).map(JSON.parse);
     // console.log(uniqueArray);
 
-    let data = dataArray.filter((item)=> {
-      return item.id === 1130818;
-    });
-    console.log(data);
+    // let data = dataArray.filter((item)=> {
+    //   return item.id === 1130818;
+    // });
+    // console.log(data);
   }, [])
   
 

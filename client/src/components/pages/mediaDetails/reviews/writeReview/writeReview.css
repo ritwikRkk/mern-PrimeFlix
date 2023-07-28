@@ -42,24 +42,28 @@
 
 .review_details {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 10px;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
-.review_rating{
+
+.review_rating {
     color: var(--text-color);
     padding-top: 20px;
 }
+
 .rating_list {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
 }
-.rating_list p{
+
+.rating_list p {
     font-size: 1.2rem;
 }
-.rating_list select{
+
+.rating_list select {
     width: 250px;
     height: 40px;
     font-size: 1.2rem;
@@ -69,17 +73,20 @@
     border-radius: 5px;
 }
 
-.star_rating .stars{
+.star_rating .stars {
     color: #ffb000;
 }
-.review_writing{
+
+.review_writing {
     width: 100%;
 }
-.review_details button:hover{
+
+.review_details button:hover {
     opacity: 0.9;
     transform: scale(1.05);
 }
-.review_details button[disabled]{
+
+.review_details button[disabled] {
     opacity: 0.7;
     pointer-events: none;
 }
@@ -94,7 +101,8 @@ textarea.write_review {
     font-size: 1rem;
     margin-bottom: 10px;
 }
-textarea.write_review:focus{
+
+textarea.write_review:focus {
     border-color: red;
 }
 
@@ -114,6 +122,7 @@ textarea.write_review:focus{
     align-items: center;
     justify-content: center;
 }
+
 .post_review p {
     display: flex;
     align-items: center;
@@ -121,20 +130,24 @@ textarea.write_review:focus{
     gap: 5px;
     user-select: none;
 }
+
 .post_review p span {
     font-size: 1rem;
     font-weight: bold;
 }
-.post_review div{
+
+.post_review div {
     position: absolute;
 }
-.post_review div span{
+
+.post_review div span {
     height: 20px !important;
     width: 20px !important;
     color: red !important;
 }
 
-.hasreview_disclaimer, .nouser_disclaimer{
+.hasreview_disclaimer,
+.nouser_disclaimer {
     color: var(--text-color);
     font-size: 1.4rem;
     display: flex;
@@ -145,7 +158,9 @@ textarea.write_review:focus{
     max-width: 1290px;
     border-bottom: 1px solid var(--text-color);
 }
-.hasreview_disclaimer span, .nouser_disclaimer span{
+
+.hasreview_disclaimer span,
+.nouser_disclaimer span {
     background-color: darkseagreen;
     padding: 5px;
     text-align: center;
@@ -154,18 +169,34 @@ textarea.write_review:focus{
 
 @media screen and (max-width: 768px) {
     .review_details {
-       align-items: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .review_rating {
+        width: 100%;
     }
 }
+
 @media screen and (max-width: 480px) {
+    .review_writer_container {
+        padding: 10px;
+    }
+
+    .review_writer {
+        padding: 5px;
+    }
+
     .post_review {
         width: 100%;
     }
-    .hasreview_disclaimer, .nouser_disclaimer{
+
+    .rating_list select {
+        width: 200px;
+    }
+
+    .hasreview_disclaimer,
+    .nouser_disclaimer {
         font-size: 1rem;
     }
 }
-
-
-
-

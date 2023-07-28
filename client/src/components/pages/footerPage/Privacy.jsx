@@ -5,7 +5,7 @@ import "./styles/privacy.css";
 const Privacy = () => {
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
     }, [])
 
     return (

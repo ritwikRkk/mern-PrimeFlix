@@ -11,7 +11,7 @@ const ChangePassword = () => {
     let authToken = localStorage.getItem('auth-token');
 
     useEffect(() => {
-        window.scrollTo(0, 0);
+        // window.scrollTo(0, 0);
         if (!authToken) {
             navigate("/user/login");
         }
@@ -89,7 +89,7 @@ const ChangePassword = () => {
             localStorage.removeItem('auth-token');
             navigate("/user/login");
         } else {
-            console.log(update.success, update.error)
+            // console.log(update.success, update.error)
         }
     }
 
