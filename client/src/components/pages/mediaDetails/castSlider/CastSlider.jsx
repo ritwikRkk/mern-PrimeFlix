@@ -26,8 +26,11 @@ const Castslider = (props) => {
     SliderFunctions.handleSlide(props.mediaId, setScrollPos, setCastCircle, "cast", val);
   }
 
-  const castsArr = useSelector(state => state.md.mdCast);
-  // console.log({castsArr});
+  let castsArr = useSelector(state => state.md.mdCast);
+  // console.log({castsArr, width:window.innerWidth});
+  if(window.innerWidth <= 400){
+    castsArr = castsArr.slice(0,40)
+  }
 
   return (
     <div className="cast_container">
