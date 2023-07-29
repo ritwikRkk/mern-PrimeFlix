@@ -4,10 +4,11 @@ import "./sliderCard.css";
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import favoriteApi from '../../../api/modules/favorites.api';
-import { addFavorite, removeFavorite } from '../../../store/slices/FavoriteSlice';
+// import favoriteApi from '../../../api/modules/favorites.api';
+// import { addFavorite, removeFavorite } from '../../../store/slices/FavoriteSlice';
 import LoadingCircular from '../loadingCircle/LoadingCircular';
 import tmdbURL from '../../../api/urlConfigs/tmdbURL';
+import { getFavArr, checkFav, favoriteHandler } from '../functions/FavoriteFunctions';
 
 const SliderCard = (props) => {
   const dispatch = useDispatch();
@@ -17,26 +18,12 @@ const SliderCard = (props) => {
   const [loading, setLoading] = useState(false);
 
   const favorites = useSelector(state => state.favorites.favoritesArr);
-  let favArr = [];
-  if (favorites.length > 0) {
-    favArr = favorites.filter((fav) => {
-      return fav.mediaType === page;
-    })
+  // let favArr = [];
 
-  }
-
-  const checkFav = (favId) => {
-    for (let val of favArr) {
-      if (val.mediaId === String(favId)) {
-        setFavId(val._id);
-        return true;
-      }
-      // console.log("checkFav called");
-    }
-  }
+  let favArr = getFavArr(favorites, page);
 
   useEffect(() => {
-    let fav = checkFav(id);
+    let fav = checkFav(id, favArr, setFavId);
     if (fav) {
       setHightlight(true);
     } else {
@@ -45,63 +32,13 @@ const SliderCard = (props) => {
     // eslint-disable-next-line
   }, [])
 
-  const createFavorites = async (authToken) => {
-    let favData = {
-      "mediaId": id,
-      "mediaType": page,
-      "mediaTitle": name,
-      "mediaPoster": img,
-      "mediaRating": rating,
-      "release_date": year
-    }
-    // let authToken = localStorage.getItem('auth-token');
-
-    let data = await favoriteApi.addFavorites(favData, authToken);
-    return data;
-
-  }
-
-  const removeFavorites = async (favId, authToken) => {
-    let data = await favoriteApi.deleteFavorites(favId, authToken);
-    return data;
-  }
-
   const handleFav = async () => {
 
     let authToken = localStorage.getItem('auth-token');
     if (authToken) {
-      // ALREADY FAVORITES
-      if (highlight && favId) {
-        setLoading(true);
-        // console.log("delete favorite", favId);
-        let data = await removeFavorites(favId, authToken);
-        setTimeout(() => {
-          if (data.success) {
-            // console.log(data, favId);
-            dispatch(removeFavorite(favId));
-            setFavId(null);
-            setHightlight(false);
-            setLoading(false);
-          }
-        }, 2000);
-      }
-
-      // ADD FAVORITES
-      else {
-        setLoading(true);
-        let data = await createFavorites(authToken);
-        // console.log(data);
-        setTimeout(() => {
-          if (data.success) {
-            // console.log(data);
-            dispatch(addFavorite(data.newFavourite));
-            setFavId(data.newFavourite._id)
-            setHightlight(true);
-            setLoading(false);
-          }
-        }, 2000);
-      }
-    }else{
+      const fnDetails = { highlight, favId, setLoading, authToken, setFavId, setHightlight, dispatch };
+      favoriteHandler(fnDetails, props);
+    } else {
       // console.log("Please Login or Sign Up first to add favorites");
     }
   }
@@ -113,10 +50,10 @@ const SliderCard = (props) => {
         <div className="slider_img_container"> <img className="" src={tmdbURL.posterPath(img)} alt="" /> </div>
         <div className="slider_card_details">
           <div className="slider_favorite_container">
-            <Link className="links favorite" to="">
+            <span className="links favorite">
               {loading === false && <span onClick={handleFav} className={`material-icons ${highlight === true ? "fav_highlight" : ""}`}>favorite</span>}
               {loading === true && <LoadingCircular />}
-            </Link>
+            </span>
           </div>
 
           <div className="slider_card-media_link"> <Link className="links watch_now" to={`/${page}/${id}`}> <span className="material-icons">play_circle</span> </Link> </div>

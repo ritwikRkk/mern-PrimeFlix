@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import "./content.css";
 // import "../../styles/content.css";
 import SliderCard from '../sliderCard/SliderCard';
-import SliderFunctions from '../sliderFunctions/SliderFunctions';
+import SliderFunctions from '../functions/SliderFunctions';
 
 const Content = (props) => {
     let [scrollPos, setScrollPos] = useState(0);

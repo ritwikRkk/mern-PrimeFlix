@@ -5,9 +5,10 @@ import { Link } from 'react-router-dom';
 import tmdbURL from '../../../../api/urlConfigs/tmdbURL';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import favoriteApi from '../../../../api/modules/favorites.api';
-import { addFavorite, removeFavorite } from '../../../../store/slices/FavoriteSlice';
+// import favoriteApi from '../../../../api/modules/favorites.api';
+// import { addFavorite, removeFavorite } from '../../../../store/slices/FavoriteSlice';
 import LoadingCircular from '../../loadingCircle/LoadingCircular';
+import { getFavArr, checkFav, favoriteHandler } from '../../functions/FavoriteFunctions';
 
 const MediaCard = (props) => {
   const dispatch = useDispatch();
@@ -17,26 +18,12 @@ const MediaCard = (props) => {
   const [loading, setLoading] = useState(false);
 
   const favorites = useSelector(state => state.favorites.favoritesArr);
-  let favArr = [];
-  if (favorites.length > 0) {
-    favArr = favorites.filter((fav) => {
-      return fav.mediaType === page;
-    })
+  // let favArr = [];
 
-  }
-
-  const checkFav = (favId) => {
-    for (let val of favArr) {
-      if (val.mediaId === String(favId)) {
-        setFavId(val._id);
-        return true;
-      }
-      // console.log("checkFav called");
-    }
-  }
+  let favArr = getFavArr(favorites, page);
 
   useEffect(() => {
-    let fav = checkFav(id);
+    let fav = checkFav(id, favArr, setFavId);
     if (fav) {
       setHightlight(true);
     } else {
@@ -45,61 +32,12 @@ const MediaCard = (props) => {
     // eslint-disable-next-line
   }, [])
 
-  const createFavorites = async (authToken) => {
-    let favData = {
-      "mediaId": id,
-      "mediaType": page,
-      "mediaTitle": name,
-      "mediaPoster": img,
-      "mediaRating": rating,
-      "release_date": year
-    }
-    // let authToken = localStorage.getItem('auth-token');
-
-    let data = await favoriteApi.addFavorites(favData, authToken);
-    return data;
-
-  }
-  const removeFavorites = async (favId, authToken) => {
-    let data = await favoriteApi.deleteFavorites(favId, authToken);
-    return data;
-  }
-
   const handleFav = async () => {
 
     let authToken = localStorage.getItem('auth-token');
     if (authToken) {
-      // ALREADY FAVORITES --> DELETE FAVORITES
-      if (highlight && favId) {
-        setLoading(true);
-        // console.log("delete favorite", favId);
-        let data = await removeFavorites(favId, authToken);
-        setTimeout(() => {
-          if (data.success) {
-            // console.log(data, favId);
-            dispatch(removeFavorite(favId));
-            setFavId(null);
-            setHightlight(false);
-            setLoading(false);
-          }
-        }, 2000);
-      }
-
-      // ADD FAVORITES
-      else {
-        setLoading(true);
-        let data = await createFavorites(authToken);
-        // console.log(data);
-        setTimeout(() => {
-          if (data.success) {
-            // console.log(data);
-            dispatch(addFavorite(data.newFavourite));
-            setFavId(data.newFavourite._id)
-            setHightlight(true);
-            setLoading(false);
-          }
-        }, 2000);
-      }
+      const fnDetails = { highlight, favId, setLoading, authToken, setFavId, setHightlight, dispatch };
+      favoriteHandler(fnDetails, props);
     } else {
       // console.log("Please Login or Sign Up first to add favorites");
     }
@@ -123,10 +61,10 @@ const MediaCard = (props) => {
                 <div className="media_card-media_name"> <span> {name} </span> </div>
               </div>
               <div className="media_favorite_container">
-                <Link className="links favorite" to="">
+                <span className="links favorite">
                   {loading === false && <span onClick={handleFav} className={`material-icons ${highlight === true ? "fav_highlight" : ""}`}>favorite</span>}
                   {loading === true && <LoadingCircular />}
-                </Link>
+                </span>
               </div>
             </div>
 

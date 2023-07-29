@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 // import "../../../styles/castSlider.css";
 // import { Link } from 'react-router-dom';
 import CastCard from '../castCard/CastCard';
-import SliderFunctions from '../../../utility/sliderFunctions/SliderFunctions';
+import SliderFunctions from '../../../utility/functions/SliderFunctions';
 
 const Castslider = (props) => {
   let [scrollPos, setScrollPos] = useState(0);

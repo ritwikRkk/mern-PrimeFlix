@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 // import "../../../styles/backdrop.css";
 // import { images } from '../../../Data';
-import SliderFunctions from '../../../utility/sliderFunctions/SliderFunctions';
+import SliderFunctions from '../../../utility/functions/SliderFunctions';
 import tmdbURL from '../../../../api/urlConfigs/tmdbURL';
 import { useSelector } from 'react-redux';
 

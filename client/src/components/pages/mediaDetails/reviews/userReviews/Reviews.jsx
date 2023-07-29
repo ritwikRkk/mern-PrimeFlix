@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 // import { reviews } from '../../../Data';
-import SliderFunctions from '../../../../utility/sliderFunctions/SliderFunctions';
+import SliderFunctions from '../../../../utility/functions/SliderFunctions';
 import ReviewCard from '../reviewCard/ReviewCard';
 import EditReviewModal from '../modal/EditReviewModal';
 import { useSelector } from 'react-redux';

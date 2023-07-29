@@ -3,7 +3,7 @@ import "./nav.css";
 // import "../styles/nav.css";
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux/es/hooks/useSelector';
-import { toggleMobileMenu, handleScroll, handleThemeMode } from '../utility/navFunction/NavFunction';
+import { toggleMobileMenu, handleScroll, handleThemeMode } from '../utility/functions/NavFunction';
 
 const Nav = () => {
     const favoritesLen = useSelector(state => state.favorites.favoritesArr.length);
