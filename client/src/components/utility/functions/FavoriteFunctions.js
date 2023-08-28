@@ -1,5 +1,6 @@
 import favoriteApi from "../../../api/modules/favorites.api";
 import { addFavorite, removeFavorite } from "../../../store/slices/FavoriteSlice";
+import { deleteMsg, msgDetails } from "../../../store/slices/MsgSlice";
 
 let getFavArr = (favorites, page) => {
     let favArr = [];
@@ -51,15 +52,23 @@ const favoriteHandler = async (fnDetails, props) => {
         setLoading(true);
         // console.log("delete favorite", favId);
         let data = await removeFavorites(favId, authToken);
+        // ************** if deletion is success ******************
         if (data.success) {
             // console.log(data, favId);
             setTimeout(() => {
+                setLoading(false);
+                dispatch(msgDetails({ msgType: "success", msgContent: data.msg }))
+                setTimeout(() => dispatch(deleteMsg()), 3000);
                 dispatch(removeFavorite(favId));
                 setFavId(null);
                 setHightlight(false);
-                setLoading(false);
 
             }, 2000);
+        } else {
+            // ************** if deletion failed ******************
+            setLoading(false);
+            dispatch(msgDetails({ msgType: "failed", msgContent: data.msg }))
+            setTimeout(() => dispatch(deleteMsg()), 3000);
         }
     }
 
@@ -68,14 +77,22 @@ const favoriteHandler = async (fnDetails, props) => {
         setLoading(true);
         let data = await createFavorites(props, authToken);
         // console.log(data);
+        // ************** if add favorite is success ******************
         if (data.success) {
             // console.log(data);
             setTimeout(() => {
+                setLoading(false);
+                dispatch(msgDetails({ msgType: "success", msgContent: data.msg }))
+                setTimeout(() => dispatch(deleteMsg()), 3000);
                 dispatch(addFavorite(data.newFavourite));
                 setFavId(data.newFavourite._id)
                 setHightlight(true);
-                setLoading(false);
             }, 2000);
+        } else {
+            // ************** if add favorite failed ******************
+            setLoading(false);
+            dispatch(msgDetails({ msgType: "failed", msgContent: data.msg }))
+            setTimeout(() => dispatch(deleteMsg()), 3000);
         }
     }
 }

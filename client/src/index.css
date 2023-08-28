@@ -27,3 +27,19 @@ body {
         padding-bottom: 220px;
     }
 }
+
+::-webkit-scrollbar{
+    width: 0.5rem;
+}
+::-webkit-scrollbar-track{
+    /* background-color: var(--text-color); */
+}
+::-webkit-scrollbar-thumb{
+    background-color: var(--text-color);
+    border-radius: 10px;
+    border: 2px solid transparent;
+    background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover{
+    background-color: grey;
+}

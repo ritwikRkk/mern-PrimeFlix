@@ -11,6 +11,7 @@ import catMovieSlice from "./slices/CatMovieSlice";
 import catTvSlice from "./slices/catTvSlice";
 import favoriteSlice from "./slices/FavoriteSlice";
 import userSlice from "./slices/UserSlice";
+import MsgSlice from "./slices/MsgSlice";
 
 const store = configureStore({
     reducer: {
@@ -23,9 +24,10 @@ const store = configureStore({
         catTv: catTvSlice,
         favorites: favoriteSlice,
         user: userSlice,
-        adminNew: AdminSlice
+        adminNew: AdminSlice,
+        msg: MsgSlice
     },
-    devTools: false
+    // devTools: false
 });
 
 export default store;

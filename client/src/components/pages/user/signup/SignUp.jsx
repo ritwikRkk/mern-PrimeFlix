@@ -5,10 +5,13 @@ import formValidator from '../../../utility/form/FormValidator';
 import { Link, useNavigate } from 'react-router-dom';
 import userApi from '../../../../api/modules/user.api';
 import LoadingCircular from '../../../utility/loadingCircle/LoadingCircular';
+import { useDispatch } from 'react-redux';
+import { deleteMsg, msgDetails } from '../../../../store/slices/MsgSlice';
 
 const SignUp = () => {
 
     let navigate = useNavigate();
+    const dispatch = useDispatch();
     let authToken = localStorage.getItem('auth-token');
     const [isLoading, setIsLoading] = useState(false);
 
@@ -80,14 +83,18 @@ const SignUp = () => {
         // console.log(creatUser);
         if(creatUser.success) {
             setTimeout(() => {
+                setIsLoading(false);
+                dispatch(msgDetails({msgType: "success", msgContent: creatUser.msg}))
+                setTimeout(() =>  dispatch(deleteMsg()), 3000);
                 localStorage.setItem("auth-token", creatUser.authToken);
                 navigate("/user");
-                setIsLoading(false);
             }, 2000);
         }else{
             setTimeout(() => {
                 // console.log(creatUser.success, creatUser.errors)
                 setIsLoading(false);
+                dispatch(msgDetails({msgType: "failed", msgContent: creatUser.msg}))
+                setTimeout(() =>  dispatch(deleteMsg()), 3000);
             }, 2000);
         }
     };

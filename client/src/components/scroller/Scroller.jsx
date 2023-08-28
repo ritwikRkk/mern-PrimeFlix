@@ -9,7 +9,7 @@ const Scroller = () => {
   };
 
   return (
-    <div className="scroller_container" onClick={handleScroll} > <span> &uarr; </span> </div>
+    <div className="scroller_container" onClick={handleScroll} > <span> <span className="material-icons">north </span> </span> </div>
   )
 }
 

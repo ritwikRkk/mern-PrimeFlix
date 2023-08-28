@@ -120,7 +120,7 @@ const SerachType = () => {
         <input type="search" className="" value={searchTxt} onChange={handleOnChange} placeholder="Type your query here" />
       </div>
 
-      <p style={{ color: "white" }}> {searchTxt} {btnActive} </p>
+      {/* <p style={{ color: "white" }}> {searchTxt} {btnActive} </p> */}
       {(movieData !== null && btnActive === "movie") && <MediaList path="search" page="movie" data={movieData} fetchMoreSearchData={fetchMoreData} />}
       {(tvData !== null && btnActive === "tv") && <MediaList path="search" page="tv" data={tvData} fetchMoreSearchData={fetchMoreData} />}
       {(castData !== null && btnActive === "cast") && <MediaList path="search" page="cast" data={castData} fetchMoreSearchData={fetchMoreData} />}

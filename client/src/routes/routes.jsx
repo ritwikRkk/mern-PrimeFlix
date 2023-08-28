@@ -19,6 +19,7 @@ import FavoritesList from "../components/pages/favorites/favoritesList/Favorites
 import Nav from "../components/navbar/Nav";
 import Footer from "../components/footer/Footer";
 import Scroller from "../components/scroller/Scroller";
+import Notification from "../components/notification/Notification";
 // import { useSelector } from "react-redux";
 
 // const state = useSelector(state => state.media);
@@ -113,7 +114,8 @@ const routes = [
 const elements = {
     nav: <Nav />,
     footer: <Footer />,
-    scroller: <Scroller />
+    scroller: <Scroller />,
+    notification: <Notification />
 }
 
 export { routes, elements };

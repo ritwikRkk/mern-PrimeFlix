@@ -6,7 +6,7 @@ const validate = (req, res, next) => {
 
     // If there are any errors i.e errors array is not empty
     if(!errors.isEmpty()){
-        return res.status(400).json({ success, errors: errors.array()[0].msg });
+        return res.status(400).json({ success, msg: errors.array()[0].msg });
     }
     
     next();

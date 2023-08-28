@@ -11,6 +11,7 @@ import { deleteFavorites } from '../../../../store/slices/FavoriteSlice';
 import { deleteUser, userDetails } from '../../../../store/slices/UserSlice';
 import { deleteMdState } from '../../../../store/slices/mediaDetailsSlice';
 import LoadingBar from '../../../utility/loadingBar/LoadingBar';
+import { deleteMsg, msgDetails } from '../../../../store/slices/MsgSlice';
 
 const UserDetails = () => {
     // const [credentials, setCredentials] = useState({ userName: "", email: "" })
@@ -46,8 +47,15 @@ const UserDetails = () => {
         // eslint-disable-next-line
     }, []);
 
+    const logOutMsg = {
+        msgType: "success",
+        msgContent: "You have been logged out successfully!"
+    }
+
     const handleLogOut = () => {
         // console.log('log out');
+        dispatch(msgDetails(logOutMsg));
+        setTimeout(() => dispatch(deleteMsg()), 3000);
         dispatch(deleteFavorites());
         dispatch(deleteUser());
         dispatch(deleteMdState());
@@ -58,7 +66,7 @@ const UserDetails = () => {
     return (
         <>
             {user.isLoading === true && <LoadingBar />}
-            {user.isLoading === false && 
+            {user.isLoading === false &&
                 <div className="userDetails_container">
                     <div className="userDetails">
                         <div className="userDetails_content">

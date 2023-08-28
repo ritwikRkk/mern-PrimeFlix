@@ -4,11 +4,16 @@ import "./changePassword.css";
 import formValidator from '../../../utility/form/FormValidator';
 import { useNavigate } from 'react-router-dom';
 import userApi from '../../../../api/modules/user.api';
+import LoadingCircular from '../../../utility/loadingCircle/LoadingCircular';
+import { useDispatch } from 'react-redux';
+import { deleteMsg, msgDetails } from '../../../../store/slices/MsgSlice';
 
 const ChangePassword = () => {
 
     let navigate = useNavigate();
+    const dispatch = useDispatch();
     let authToken = localStorage.getItem('auth-token');
+    const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
         // window.scrollTo(0, 0);
@@ -83,13 +88,24 @@ const ChangePassword = () => {
     };
 
     const changePassword = async (credentials, authToken) => {
-        let update = await  userApi.updatePassword(credentials, authToken);
+        setIsLoading(true);
+        let update = await userApi.updatePassword(credentials, authToken);
         if (update.success) {
             // console.log(getUser);
-            localStorage.removeItem('auth-token');
-            navigate("/user/login");
+            setTimeout(() => {
+                setIsLoading(false);
+                dispatch(msgDetails({ msgType: "success", msgContent: update.msg }))
+                setTimeout(() => dispatch(deleteMsg()), 3000);
+                localStorage.removeItem('auth-token');
+                navigate("/user/login");
+            }, 2000);
         } else {
             // console.log(update.success, update.error)
+            setTimeout(() => {
+                setIsLoading(false);
+                dispatch(msgDetails({ msgType: "failed", msgContent: update.msg }))
+                setTimeout(() => dispatch(deleteMsg()), 3000);
+            }, 2000);
         }
     }
 
@@ -167,7 +183,8 @@ const ChangePassword = () => {
                         </div>
 
                         <div className="container changepassword_button">
-                            <button type="submit" disabled={validCred.oldpassword === "false" || validCred.password === "false" || validCred.cpassword === "false"} >Submit</button>
+                            <button style={{ backgroundColor: isLoading === true ? "#ccc" : "" }} type="submit" disabled={validCred.oldpassword === "false" || validCred.password === "false" || validCred.cpassword === "false"} >Submit</button>
+                            {isLoading === true && <LoadingCircular />}
                         </div>
                     </form>
 

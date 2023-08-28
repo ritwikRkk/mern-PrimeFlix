@@ -40,9 +40,9 @@ const Castslider = (props) => {
           <button className={`left-arr_cast arrow left-${props.mediaId}`} onClick={() => handleSlide("left")}>&lt;</button>
           <div className={`slider_wrapper_cast wrapp-${props.mediaId}`}>
 
-            {castsArr.map((cast) => {
+            {castsArr.map((cast, index) => {
               return (
-                <CastCard key={cast.id} id={cast.id} name= {cast.name} img={cast.profile_path} />
+                <CastCard key={`cast.id-${index}`} id={cast.id} name= {cast.name} img={cast.profile_path} />
               )
             })}
 

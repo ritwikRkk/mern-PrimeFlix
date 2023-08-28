@@ -46,6 +46,7 @@ const App = () => {
     // eslint-disable-next-line
     authToken = localStorage.getItem('auth-token');
     if (authToken) {
+      // ********************************
       fetchUser(authToken);
       fetchFavorites(authToken);
     }
@@ -64,6 +65,7 @@ const App = () => {
     <>
       <Router>
         {elements.nav}
+        {elements.notification}
 
         <Routes>
 

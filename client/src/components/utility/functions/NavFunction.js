@@ -1,12 +1,24 @@
 
-const toggleMobileMenu = () => {
-    const navToggle = document.querySelector('.navbar__toggle');
-    const navMenu = document.querySelector('.navbar__menu');
+// const toggleMobileMenu = () => {
+//     const navToggle = document.querySelector('.navbar__toggle');
+//     const navMenu = document.querySelector('.navbar__menu');
+//     const navMenuWrapper = document.querySelector('.navbar_menu_wrapper');
 
-    navToggle.classList.toggle('active');
-    navMenu.classList.toggle('active');
-    // console.log("toggleMobileMenu");
-}
+//     navToggle.classList.toggle('active');
+//     navMenu.classList.toggle('active');
+//     navMenuWrapper.classList.toggle('active');
+//     console.log("toggleMobileMenu");
+// }
+// const hideMobileMenu = () => {
+//     const navToggle = document.querySelector('.navbar__toggle');
+//     const navMenu = document.querySelector('.navbar__menu');
+//     const navMenuWrapper = document.querySelector('.navbar_menu_wrapper');
+
+//     navToggle.classList.remove('active');
+//     navMenu.classList.remove('active');
+//     navMenuWrapper.classList.remove('active');
+//     console.log("removeMobileMenu");
+// }
 
 const handleScroll = (scrollHeight, setScrollHeight, location) => {
     // console.log("handleScroll", window.scrollY);
@@ -62,4 +74,4 @@ const handleThemeMode = (mode, setThemeMode) => {
 }
 
 
-export { toggleMobileMenu, handleScroll, handleThemeMode }
+export { handleScroll, handleThemeMode }

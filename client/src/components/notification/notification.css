@@ -1,0 +1,110 @@
+.notification_container {
+    position: fixed;
+    /* top: 85px; */
+    bottom: 60px;
+    left: -100%;
+    /* left: 10px; */
+    /* width: 50%; */
+    max-width: 400px;
+    z-index: 5;
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    border: 2px solid var(--text-color);
+    box-shadow: 1px 1px 10px 2px var(--text-color);
+    overflow: hidden;
+    /* animation: fade 3s ease-in forwards; */
+    /* transition: left 1s ease-in-out; */
+}
+.notification_container.active {
+    /* left: 10px; */
+    animation: fade 3s ease-in forwards;
+    /* transition: left 1s ease-in-out; */
+}
+
+
+@keyframes fade {
+    0% {
+        left: -100%;
+    }
+    
+    20% {
+        left: 10px;
+    }
+    
+    80% {
+        left: 10px;
+    }
+    
+    100% {
+        left: -100%;
+    }
+}
+.close_msg {
+    position: absolute;
+    color: var(--text-color);
+    right: 1px;
+    top: 2px;
+    font-size: 1rem;
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+.notification_info {
+    /* height: 70px; */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 10px 15px;
+}
+
+.msg_type.success {
+    color: green;
+}
+
+.msg_type.error {
+    color: red;
+}
+
+.msg_type .material-icons {
+    font-size: 1.5rem;
+}
+
+.msg_container {
+    color: var(--text-color);
+    padding: 5px;
+}
+
+.notification_container .progress_bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 5px;
+    /* width: 100%; */
+    /* background-color: red; */
+    /* animation: barwidth 1.8s ease-in 0.6s normal; */
+    /* transition: background 1s ease-in-out; */
+}
+.notification_container .progress_bar.success {
+    animation: barwidth 1.8s ease-in 0.6s normal;
+    background-color: green;
+}
+.notification_container .progress_bar.error {
+    animation: barwidth 1.8s ease-in 0.6s normal;
+    background-color: red;
+}
+
+@keyframes barwidth {
+    0% {
+        width: 100%;
+    }
+
+    100% {
+        width: 0%;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .notification_container {
+        width: 85%;
+    }
+}

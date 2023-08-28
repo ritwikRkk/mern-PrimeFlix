@@ -1,20 +1,20 @@
 :root {
-  --lGradHero: linear-gradient(
-      to right,
+  --lGradHero: linear-gradient(to right,
       rgba(0, 0, 0, 0.35) 100%,
-      transparent 35%
-    ),
+      transparent 35%),
     linear-gradient(to left, rgba(0, 0, 0, 0.4) 20%, transparent 40%),
     linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 20%, transparent 30%),
     linear-gradient(to top, rgba(0, 0, 0, 0.8) 10%, transparent 20%);
   /* --lGradHero: linear-gradient(to right, rgba(255,255,255,0.4) 100%, transparent 30%), linear-gradient(to left, rgba(255,255,255,0.4) 5%, transparent 15%), linear-gradient(to bottom, rgba(255,255,255,0.5) 20%, transparent 30%), linear-gradient(to top, rgba(255,255,255,0.8) 10%, transparent 30%); */
 }
+
 .mediaDetailsHero {
   position: relative;
   overflow-x: hidden;
   background-color: var(--bg-color);
   border-bottom: 1px solid var(--text-color);
 }
+
 .mediaDetailsHero .mdh-img-container {
   /* padding: 80px 100px; */
   width: 100%;
@@ -33,6 +33,7 @@
   display: flex;
   position: relative;
 }
+
 .mdh_container::before {
   position: absolute;
   top: 0;
@@ -42,12 +43,14 @@
   content: "";
   z-index: -1;
 }
+
 .mdh-poster_container {
   height: 100%;
   height: 100vh;
   width: 30%;
   padding: 90px 15px 10px;
 }
+
 .mdh-poster_img {
   height: 95%;
   border-radius: 20px;
@@ -132,6 +135,7 @@
   align-items: center;
   /* justify-content: center; */
 }
+
 .mdh-media_description::before {
   content: "";
   position: absolute;
@@ -151,6 +155,7 @@
 .mdh-media_description div {
   padding: 5px;
 }
+
 .mdh-media_description div span {
   color: var(--text-color);
 }
@@ -159,16 +164,19 @@
   display: flex;
   gap: 20px;
 }
+
 .mdh-media_utils .links {
   display: flex;
   gap: 5px;
   text-decoration: none;
 }
+
 .links.watch_now {
   text-decoration: none;
   color: white;
   color: var(--text-color);
 }
+
 .links.watch_now span.material-icons {
   display: flex;
   align-items: center;
@@ -181,6 +189,7 @@
   border: 2px solid var(--text-color);
   border-radius: 5px;
   font-size: 1.5rem;
+  cursor: pointer;
 }
 
 .mdh-favorite_container {
@@ -193,6 +202,7 @@
   justify-content: center;
   position: relative;
 }
+
 .mdh-favorite_container::before {
   position: absolute;
   top: 0;
@@ -206,7 +216,22 @@
 }
 
 .mdh-favorite_container .favorite {
-  color: #ff220c;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+.mdh-favorite_container .favorite .fav_highlight {
+  color: #FF0000;
+}
+
+.mdh-favorite_container .favorite div {
+  width: 24px !important;
+  height: 24px !important;
+}
+.mdh-favorite_container .favorite div span {
+  width: 24px !important;
+  height: 24px !important;
+  color: red !important;
 }
 
 /* MEDIA QUERIES */
@@ -214,55 +239,70 @@
   .mediaDetailsHero_container {
     width: 60%;
   }
+
   .mdh-poster_container {
     width: 35%;
   }
+
   .mdh-media_name {
     font-size: 2rem;
   }
+
   .mdh-media_rating,
   .mdh-media_release_year {
     font-size: 1.2rem;
   }
+
   .mdh-media_genres .media_genre_name {
     font-size: 1rem;
   }
+
   .mdh-media_description {
     font-size: 0.9rem;
   }
+
   .mdh-watch_now_container {
     font-size: 1.2rem;
   }
 }
+
 @media screen and (max-width: 900px) {
   .mediaDetailsHero_container {
     padding: 120px 10px 65px;
   }
+
   .mdh-poster_container {
     width: 40%;
   }
 }
+
 @media screen and (max-width: 768px) {
   .mdh-media_name {
     font-size: 2rem;
   }
+
   .mdh-media_rating,
   .mdh-media_release_year {
     font-size: 1rem;
   }
+
   .mdh-media_genres .media_genre_name {
     font-size: 0.8rem;
   }
+
   .mdh-media_description {
     font-size: 0.75rem;
     /* height: 45px; */
   }
+
   .material-icons {
     font-size: 1rem;
   }
+
   .mdh-watch_now_container {
     font-size: 1rem;
   }
+
   .small {
     font-size: 1.5rem;
   }
@@ -273,6 +313,7 @@
   .mdh_container {
     flex-direction: column;
   }
+
   .mdh-poster_container {
     width: 100%;
     padding: 80px 15px 5px;
@@ -280,11 +321,13 @@
     align-items: center;
     justify-content: center;
   }
+
   .mdh-poster_img {
     width: 40%;
     height: 90%;
     min-width: 250px;
   }
+
   .mediaDetailsHero_container {
     width: 100%;
     padding: 20px;
@@ -292,6 +335,7 @@
     height: unset;
     background-color: var(--bg-color);
   }
+
   .mdh-media_description::before {
     background-color: var(--text-color);
     z-index: unset;
@@ -302,22 +346,27 @@
   .mediaDetailsHero_container {
     width: 100%;
   }
+
   .mdh-media_name {
     font-size: 1.5rem;
   }
+
   .mdh-media_rating,
   .mdh-media_release_year {
     font-size: 1rem;
   }
+
   /* .mdh-media_genres .media_genre_name {
     font-size: 0.7rem;
   } */
   .mdh-media_description {
     font-size: 0.65rem;
   }
+
   .mdh-media_name .small {
     font-size: 1.1rem;
   }
+
   .mdh-poster_img {
     width: 70%;
     height: 75%;

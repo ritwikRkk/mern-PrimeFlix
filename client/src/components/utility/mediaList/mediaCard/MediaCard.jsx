@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 // import { addFavorite, removeFavorite } from '../../../../store/slices/FavoriteSlice';
 import LoadingCircular from '../../loadingCircle/LoadingCircular';
 import { getFavArr, checkFav, favoriteHandler } from '../../functions/FavoriteFunctions';
+import { deleteMsg, msgDetails } from '../../../../store/slices/MsgSlice';
 
 const MediaCard = (props) => {
   const dispatch = useDispatch();
@@ -39,6 +40,8 @@ const MediaCard = (props) => {
       const fnDetails = { highlight, favId, setLoading, authToken, setFavId, setHightlight, dispatch };
       favoriteHandler(fnDetails, props);
     } else {
+      dispatch(msgDetails({ msgType: "failed", msgContent: "Please Login or Sign Up first to add favorites" }))
+      setTimeout(() => dispatch(deleteMsg()), 3000);
       // console.log("Please Login or Sign Up first to add favorites");
     }
 

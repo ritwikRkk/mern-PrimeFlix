@@ -8,6 +8,7 @@ import { useDispatch } from 'react-redux';
 import { getFavorites } from '../../../../store/slices/FavoriteSlice';
 import favoriteApi from '../../../../api/modules/favorites.api';
 import LoadingCircular from '../../../utility/loadingCircle/LoadingCircular';
+import { deleteMsg, msgDetails } from '../../../../store/slices/MsgSlice';
 const Login = () => {
     let navigate = useNavigate();
     const dispatch = useDispatch();
@@ -73,15 +74,19 @@ const Login = () => {
         // console.log(getUser);
         if (getUser.success) {
             setTimeout(() => {
+                setIsLoading(false);
+                dispatch(msgDetails({msgType: "success", msgContent: getUser.msg}))
+                setTimeout(() =>  dispatch(deleteMsg()), 3000);
                 fetchFavorites(getUser.authToken);
                 localStorage.setItem("auth-token", getUser.authToken);
                 navigate("/user");
-                setIsLoading(false);
             }, 2000);
         } else {
             setTimeout(() => {
                 // console.log(getUser.success, getUser.error)
+                dispatch(msgDetails({msgType: "failed", msgContent: getUser.msg}))
                 setIsLoading(false);
+                setTimeout(() =>  dispatch(deleteMsg()), 3000);
             }, 2000);
         }
     };

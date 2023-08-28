@@ -7,16 +7,16 @@ const addfavourite = async (req, res) =>{
 
         // CHECK IF THE SAME MOVIE IS ALREADY ADDED AS A FAVORITE
         const favourite = await favouriteModel.findOne({ $and: [ { mediaId: req.body.mediaId }, { user: req.user.id} ] });
-        if(favourite) return res.json({ success, "error": "Duplicate favourite"});
+        if(favourite) return res.json({ success, "msg": "Duplicate favourite"});
 
         const newFavourite = await favouriteModel.create({
             user: req.user.id,
             ...req.body
         });
         success = true;
-        res.json({success, newFavourite});
+        res.json({success, newFavourite, msg: "Successfully Added to favourites!"});
     } catch (error) {
-        res.json(error);
+        return res.json({"error-msg": error.message, msg: "failed to add favourite"});
     }
 }
 
@@ -29,7 +29,7 @@ const getFavourites = async (req, res) =>{
         success = true;
         res.json({success, favourites});
     } catch (error) {
-        return res.json({"error message": error.message});
+        return res.json({"msg": error.message});
     }
 }
 
@@ -40,11 +40,11 @@ const deleteFavourite = async (req, res) =>{
         // console.log(favouriteId);
         // const review = await reviewModel.findOneAndDelete({ _id: reviewId, user: req.user.id });
         const favourite = await favouriteModel.findOneAndDelete({ $and: [ { _id: favouriteId }, { user: req.user.id} ] });
-        if(!favourite) return res.json({success, "error": "No favourite found"});
+        if(!favourite) return res.json({success, "msg": "No favourite found"});
         success = true;
         return res.json({success, "msg": "favourite deleted successfully", favourite});
     } catch (error) {
-        return res.json({"error message": error.message});
+        return res.json({"error-msg": error.message, msg: "failed to delete favourite"});
     }
 }
 
