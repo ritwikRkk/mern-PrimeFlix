@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import LoadingCircular from '../loadingCircle/LoadingCircular';
 import tmdbURL from '../../../api/urlConfigs/tmdbURL';
 import { getFavArr, checkFav, favoriteHandler } from '../functions/FavoriteFunctions';
+import { deleteMsg, msgDetails } from '../../../store/slices/MsgSlice';
 
 const SliderCard = (props) => {
   const dispatch = useDispatch();
@@ -40,6 +41,8 @@ const SliderCard = (props) => {
       favoriteHandler(fnDetails, props);
     } else {
       // console.log("Please Login or Sign Up first to add favorites");
+      dispatch(msgDetails({ msgType: "failed", msgContent: "Please Login or Sign Up first to add favorites" }))
+      setTimeout(() => dispatch(deleteMsg()), 3000);
     }
   }
 
