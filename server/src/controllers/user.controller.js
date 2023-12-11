@@ -20,7 +20,7 @@ const signup = async (req, res) => {
                 id: newUser.id
             }
         }
-        const authToken = jwt.sign(data, process.env.TOKEN_SECRET);
+        const authToken = jwt.sign(data, process.env.JWT_TOKEN_SECRET);
         success = true;
         // res.json({ success, newUser, authToken });
         res.json({ success, authToken, "msg": "Account created successfully!" });
@@ -63,7 +63,7 @@ const login = async (req, res) => {
                 id: user.id
             }
         }
-        const authToken = jwt.sign(data, process.env.TOKEN_SECRET);
+        const authToken = jwt.sign(data, process.env.JWT_TOKEN_SECRET);
         success = true;
         // res.json({ success, user, authToken });
         res.json({ success, authToken, msg: "You have been loggedIn successfully!" });

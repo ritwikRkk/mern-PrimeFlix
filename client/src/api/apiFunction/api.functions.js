@@ -1,7 +1,7 @@
 
 
 // const baseUrl = "http://localhost:5000/api/v1";
-const baseUrl = "https://primeflix-server.vercel.app/api/v1";
+const baseUrl = process.env.REACT_APP_API_URI;
 
 const apiFunctions = {
     get: async (endPoint, qs) => {
@@ -15,6 +15,7 @@ const apiFunctions = {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
+                    'api-token': process.env.REACT_APP_API_TOKEN,
                 },
             });
             const json = await response.json();
@@ -35,6 +36,7 @@ const apiFunctions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'api-token': process.env.REACT_APP_API_TOKEN,
                 },
                 body: JSON.stringify(data)
             });
@@ -57,6 +59,7 @@ const apiFunctions = {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
+                    'api-token': process.env.REACT_APP_API_TOKEN,
                     'auth-token': token
                 },
             });
@@ -79,6 +82,7 @@ const apiFunctions = {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
+                    'api-token': process.env.REACT_APP_API_TOKEN,
                     'auth-token': token
                 },
                 body: JSON.stringify(data)
@@ -102,6 +106,7 @@ const apiFunctions = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'api-token': process.env.REACT_APP_API_TOKEN,
                     'auth-token': token
                 },
                 body: JSON.stringify(data)
@@ -125,6 +130,7 @@ const apiFunctions = {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
+                    'api-token': process.env.REACT_APP_API_TOKEN,
                     'auth-token': token
                 },
             });

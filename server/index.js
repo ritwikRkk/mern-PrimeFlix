@@ -8,6 +8,7 @@ import mongoose from 'mongoose';
 // import userModel from "./src/models/User.js";
 import routes from "./src/routes/index.js";
 import cors from "cors";
+import { validateApi } from "./src/middlewares/validateApi.js";
 
 
 const app = express();
@@ -20,20 +21,21 @@ app.use(cors({
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use('/', validateApi);
 app.use('/api/v1', routes);
 
 const PORT = process.env.PORT;
 
 const server = http.createServer(app);
 mongoose.connect(process.env.MONGODB_URL).then(() => {
-    console.log("server connected to Mongodb");
-    server.listen(PORT, () => {
-      console.log(`Server is listening on PORT ${PORT}`);
-    });
-  }).catch((err) => {
-    console.log({ err });
-    process.exit(1);
+  console.log("server connected to Mongodb");
+  server.listen(PORT, () => {
+    console.log(`Server is listening on PORT ${PORT}`);
   });
+}).catch((err) => {
+  console.log({ err });
+  process.exit(1);
+});
 
 // app.listen(PORT, function (err) {
 //     if (!err) {
