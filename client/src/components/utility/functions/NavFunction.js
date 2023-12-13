@@ -27,13 +27,19 @@ const handleScroll = (scrollHeight, setScrollHeight, location) => {
 
     // hiding and unhiding the scroller
     let scroller_container = document.querySelector(".scroller_container");
+    let currLocation = location.pathname.split("/")[1];
 
     //  SET THE --navbar-opacity TO 1 FOR CATEGORIES PAGE ONLY
-    if ((scrollHeight >= 80) || (location.pathname.split("/")[1] === "categories")) {
+    if ((scrollHeight >= 80) || (currLocation === "categories") || (currLocation === "favorites") || (currLocation === "search")) {
         document.documentElement.style.setProperty('--navbar-opacity', 1)
-        scroller_container.style.display = "flex";
     } else {
         document.documentElement.style.setProperty('--navbar-opacity', 0.5)
+    }
+
+    //  SHOW AND HIDE THE TOP SCROLLER
+    if ((scrollHeight >= 80)) {
+        scroller_container.style.display = "flex";
+    } else {
         scroller_container.style.display = "none";
     }
 }
