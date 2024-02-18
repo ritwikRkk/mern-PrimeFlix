@@ -14,8 +14,36 @@
 .media_card-poster_img img {
   /* background: url("../../../../../public/images/no_img.png");
   border-radius: 20px; */
+  /* height: 100%;
+  aspect-ratio: 2/3; */
+}
+
+.media_card-poster_img{
+  /* background: url("../../../../../public/images/no_img.png");
+  border-radius: 20px; */
+  /* height: 100%;
+  aspect-ratio: 2/3; */
+
+  width: 100%;
+  padding-top: 150%; 
+  position: relative;
+}
+
+.media_card-poster_img img {
+  /* background: url("../../../../../public/images/no_img.png");
+  border-radius: 20px; */
+  /* height: 100%;
+  aspect-ratio: 2/3; */
+
+  display: block;
   height: 100%;
   aspect-ratio: 2/3;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 

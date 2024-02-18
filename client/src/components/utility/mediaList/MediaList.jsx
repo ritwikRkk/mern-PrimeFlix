@@ -36,25 +36,26 @@ const MediaList = (props) => {
 
     const setGridVal = () => {
         // console.log('setGrid');
-        let clientWidth = window.screen.availWidth;;
-        if (clientWidth > 900 && grid.columns !== 4 && grid.rows !== 1) {
-            // console.log(">900");
-            setGrid({ columns: 4, rows: 1 });
-            setMediaData(props.data.slice(0, 4 * 1))
-        }
-        if (clientWidth < 900 && grid.columns !== 3 && grid.rows !== 2) {
-            // console.log("900");
-            setGrid({ columns: 3, rows: 2 });
-            setMediaData(props.data.slice(0, 3 * 2))
-
-            // columns = 3;
-        }
+        let clientWidth = window.screen.availWidth;
+        // console.log(clientWidth);
         if (clientWidth <= 600 && grid.columns !== 2 && grid.rows !== 2) {
             // console.log("600");
             setGrid({ columns: 2, rows: 2 });
             setMediaData(props.data.slice(0, 2 * 2))
 
             // columns = 2;
+        }
+        if (clientWidth > 600 && clientWidth <= 900 && grid.columns !== 3 && grid.rows !== 2) {
+            // console.log("900");
+            setGrid({ columns: 3, rows: 2 });
+            setMediaData(props.data.slice(0, 3 * 2))
+
+            // columns = 3;
+        }
+        if (clientWidth > 900 && grid.columns !== 4 && grid.rows !== 1) {
+            // console.log(">900");
+            setGrid({ columns: 4, rows: 1 });
+            setMediaData(props.data.slice(0, 4 * 1))
         }
     }
     useEffect(() => {
@@ -83,7 +84,7 @@ const MediaList = (props) => {
         else if (props.path === "search") {
             // setTimeout(() => props.fetchMoreSearchData(), 2000);
             let response = await props.fetchMoreSearchData();
-            if(response === false){
+            if (response === false) {
                 setIsLoading(false);
                 // console.log(response);
             }
@@ -122,12 +123,12 @@ const MediaList = (props) => {
     }
     window.addEventListener("scroll", infiniteScroll);
 
-    const createMediaCard = (mediaCard) => {
+    const createMediaCard = (mediaCard, i) => {
         return (
-            <div key={mediaCard.id || mediaCard._id}>
+            <div key={mediaCard.id ? `${mediaCard.id}${i}` : `${mediaCard._id}${i}`}>
                 {(props.page !== "cast" && props.page !== "favorites") &&
                     <MediaCard
-                        key={mediaCard.id}
+                        key={`${mediaCard.id}${i}`}
                         id={mediaCard.id}
                         img={mediaCard.poster_path}
                         rating={mediaCard.vote_average}
@@ -138,7 +139,7 @@ const MediaList = (props) => {
                 }
                 {(props.page === "favorites") &&
                     <MediaCard
-                        key={mediaCard.mediaId}
+                        key={`${mediaCard.id}${i}`}
                         id={mediaCard.mediaId}
                         img={mediaCard.mediaPoster}
                         rating={mediaCard.mediaRating}
@@ -149,7 +150,7 @@ const MediaList = (props) => {
                 }
                 {props.page === "cast" &&
                     <CastCard
-                        key={mediaCard.id}
+                        key={`${mediaCard.id}${i}`}
                         id={mediaCard.id}
                         img={mediaCard.profile_path}
                         name={mediaCard.original_name}
