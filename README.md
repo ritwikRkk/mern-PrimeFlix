@@ -9,6 +9,7 @@ This website has several Features, which are developed from scratch, without usi
 ##### Features without any pre-built libraries
 - Light/Dark Mode
 - Top scroller
+- Auto Image Player/Slider
 - Infinite scroller
 - Notification Bar
 - Horizontal Image/video Slider
